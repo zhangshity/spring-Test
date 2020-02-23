@@ -16,7 +16,6 @@
 	-->
 	
 	
-	
 	<!-- 不用继承，正常的写法 -->
 	<!-- 
 		<bean id ="address2" class="com.demo.spring.beans.autowire.Address"
@@ -24,17 +23,11 @@
 	-->
 	
 	
-	
 	<!-- 继承！bean的 parent 属性，指定继承另一个bean的配置 -->
-	<bean id ="address2"  p:street="三里屯" parent="address"></bean>
-	
+	<bean id ="address2" parent="address" p:street="三里屯"></bean>
 	
 	<!-- address3 继承 address2 -->
-	<bean id ="address3"  p:street="chananjie" parent="address2"></bean>
-	
-	
-	
-	
+	<bean id ="address3" parent="address2" p:street="chananjie"></bean>
 	
 	
 	
@@ -51,11 +44,10 @@
 		
 		
 	<!-- 要求配置Person bean时，必须有一个关联的car，换句话说 Person这个bean依赖于Car这个bean -->
-	<bean id="car" class="com.demo.spring.beans.autowire.Car"
-		p:brand="suibian" p:price="100000"></bean>
-			<!-- 因为depends-on 所以必须有car这个bean，否则异常 -->
-	<bean id="person" class="com.demo.spring.beans.autowire.Person"
-		p:name="TOM" p:address-ref="address2" depends-on="car"></bean>
+	<bean id="car" class="com.demo.spring.beans.autowire.Car" p:brand="suibian" p:price="100000"/>
+			
+	<bean id="person" class="com.demo.spring.beans.autowire.Person" p:name="TOM" p:address-ref="address2" 
+		depends-on="car"/> <!-- 因为depends-on 所以必须有car这个bean，否则异常 -->
 		
 		
 		

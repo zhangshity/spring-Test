@@ -28,5 +28,7 @@
 
 lib
 bin
+/bin
+/bin/
 *.log
 /logs

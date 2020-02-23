@@ -3,10 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<bean id="car" 
-		class="com.demo.spring.beans.autowire.Car"
+	<bean id="car" class="com.demo.spring.beans.autowire.Car"
 		scope="prototype">
-		<!--   
+		<property name="brand" value="AUdi"></property>
+		<property name="price" value="300000"></property>
+	</bean>
+	<!--   
 		/*==============================================================================
 		 * scope="prototype"  原型的，结果：This Car's constructor!
 		 *								   This Car's constructor!
@@ -25,9 +27,6 @@
 		 *                   //其实在IOC容器创建好的过程中bean就创建好了(利用构造函数验证)
 		 * ==============================================================================
 		 * */
-		-->
-		<property name="brand" value="AUdi"></property>
-		<property name="price" value="300000"></property>
-	</bean>
+	-->
 
 </beans>

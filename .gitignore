@@ -29,3 +29,4 @@
 lib
 *.log
 /logs
+/bin

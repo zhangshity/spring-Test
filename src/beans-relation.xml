@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 父bean -->
+	<bean id ="address" class="com.demo.spring.beans.autowire.Address"
+		p:city="beijing_parent" p:street="五道口"></bean>
+	
+	<!-- 如果不想实例化父bean，只做模板，可以用abstract属性 变 抽象bean -->
+	<!-- =========抽象Bean甚至不用指定class，只要属性有就可以================ -->
+	<!-- 
+		<bean id ="address" class="com.demo.spring.beans.autowire.Address"
+		p:city="beijing_parent" p:street="五道口" abstract="true"></bean> 
+	-->
+	
+	
+	
+	<!-- 不用继承，正常的写法 -->
+	<!-- 
+		<bean id ="address2" class="com.demo.spring.beans.autowire.Address"
+		p:city="beijing" p:street="三里屯"></bean> 
+	-->
+	
+	
+	
+	<!-- 继承！bean的 parent 属性，指定继承另一个bean的配置 -->
+	<bean id ="address2"  p:street="三里屯" parent="address"></bean>
+	
+	
+	<!-- address3 继承 address2 -->
+	<bean id ="address3"  p:street="chananjie" parent="address2"></bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- ======================bean之间的依赖============================================================================= -->
+	<!-- 
+		<bean id="person" class="com.demo.spring.beans.autowire.Person"
+		p:name="TOM" p:address-ref="address2"></bean> 
+	-->
+	<!--运行结果：Person [name=TOM, address=Address [city=beijing_parent, street=三里屯], car=null] -->
+		
+		
+		
+	<!-- 要求配置Person bean时，必须有一个关联的car，换句话说 Person这个bean依赖于Car这个bean -->
+	<bean id="car" class="com.demo.spring.beans.autowire.Car"
+		p:brand="suibian" p:price="100000"></bean>
+			<!-- 因为depends-on 所以必须有car这个bean，否则异常 -->
+	<bean id="person" class="com.demo.spring.beans.autowire.Person"
+		p:name="TOM" p:address-ref="address2" depends-on="car"></bean>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+</beans>

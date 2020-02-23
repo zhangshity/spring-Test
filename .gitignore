@@ -27,5 +27,6 @@
 /.nb-gradle/
 
 lib
+bin
 *.log
 /logs
